@@ -5,7 +5,7 @@ export const fetchServices = createAsyncThunk(
     'transaction/fetchServices',
     async () => {
         const response = await getServicesAPI();
-        return response.data;
+        return response.data.data;
     }
 );
 
@@ -13,7 +13,7 @@ export const fetchBanners = createAsyncThunk(
     'transaction/fetchBanners',
     async () => {
         const response = await getBannerAPI();
-        return response.data;
+        return response.data.data;
     }
 );
 

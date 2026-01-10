@@ -11,11 +11,11 @@ import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 function App() {
   return (
     <Routes>
-      {/* Public Routes */}
+      {/* public routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Protected Routes */}
+      {/* protected routes */}
       <Route 
         path="/" 
         element={
@@ -57,7 +57,7 @@ function App() {
         } 
       />
 
-      {/* Catch all - redirect to home */}
+      {/* catch all/redirect to home */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

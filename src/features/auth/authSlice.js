@@ -20,7 +20,7 @@ export const login = createAsyncThunk(
 // async thunks register
 export const register = createAsyncThunk(
     'auth/register',
-    async (useRouteLoaderData, { rejectWithValue }) => {
+    async (userData, { rejectWithValue }) => {
         try {
             const response = await registerAPI(userData);
             return response.data;

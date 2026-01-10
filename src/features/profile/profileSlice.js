@@ -6,7 +6,7 @@ export const fetchProfile = createAsyncThunk(
     async(_, { rejectWithValue }) => {
         try {
             const response = await getProfileAPI();
-            return response.data;
+            return response.data.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }

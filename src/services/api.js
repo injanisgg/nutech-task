@@ -79,7 +79,7 @@ export const transactionAPI = (serviceCode) => {
   return api.post('/transaction', { service_code: serviceCode });
 };
 
-export const getTransactionHistoryAPI = (offset = 0, limit = 5) => {
+export const getTransactionsHistoryAPI = (offset = 0, limit = 5) => {
   return api.get(`/transaction/history?offset=${offset}&limit=${limit}`);
 };
 
