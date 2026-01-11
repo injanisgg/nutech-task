@@ -26,15 +26,15 @@ export const updateProfile = createAsyncThunk(
 );
 
 export const updateProfileImage = createAsyncThunk(
-    'profile/updateImage',
-    async(file, { rejectWithValue }) => {
-        try {
-            const response  = await updateProfileImageAPI(file);
-            return response.data.data;
-        } catch (error) {
-            return rejectWithValue(error.response?.data || error.message);
-        }
+  'profile/updateImage',
+  async (file, { rejectWithValue }) => {
+    try {
+      const response = await updateProfileImageAPI(file);
+      return response.data.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data);
     }
+  }
 );
 
 const profileSlice = createSlice({

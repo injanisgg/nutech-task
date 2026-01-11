@@ -5,9 +5,6 @@ const BASE_URL = 'https://take-home-test-api.nutech-integrasi.com';
 // axios instance
 const api = axios.create({
     baseURL: BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
 });
 
 // request interceptor untuk attach token setiap request
@@ -54,12 +51,10 @@ export const updateProfileAPI = (data) => {
     return api.put('/profile/update', data);
 }
 
-export const updateProfileImageAPI = (formData) => {
-    return api.put('profile/image', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    });
+export const updateProfileImageAPI = (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  return api.put('/profile/image', formData);
 };
 
 // balance and transaction apis
