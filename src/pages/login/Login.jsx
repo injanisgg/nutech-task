@@ -155,6 +155,7 @@ const Login = () => {
                   color: "#f42619",
                   fontWeight: 600,
                   textDecoration: "none",
+                  "&:hover": { textDecoration: "underline" },
                 }}
               >
                 Registrasi

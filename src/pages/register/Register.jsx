@@ -231,6 +231,7 @@ const Register = () => {
                     color: "#f42619",
                     textDecoration: "none",
                     fontWeight: 600,
+                    "&:hover": { textDecoration: "underline" },
                   }}
                 >
                   Login di sini
