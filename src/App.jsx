@@ -1,63 +1,36 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/login/Login';
-import Register from './pages/register/Register';
-import Home from './pages/home/Home';
-import TopUp from './pages/topUp/TopUp';
-import Payment from './pages/payment/Payment';
-import Transaction from './pages/transaction/Transaction';
-import Profile from './pages/profile/Profile';
-import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import Home from "./pages/home/Home";
+import TopUp from "./pages/topUp/TopUp";
+import Payment from "./pages/payment/Payment";
+import Transaction from "./pages/transaction/Transaction";
+import Profile from "./pages/profile/Profile";
+
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <Routes>
-      {/* public routes */}
+      {/* public */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* protected routes */}
-      <Route 
-        path="/" 
-        element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/topup" 
-        element={
-          <ProtectedRoute>
-            <TopUp />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/payment/:serviceCode" 
-        element={
-          <ProtectedRoute>
-            <Payment />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/transaction" 
-        element={
-          <ProtectedRoute>
-            <Transaction />
-          </ProtectedRoute>
-        } 
-      />
-      <Route 
-        path="/profile" 
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        } 
-      />
+      {/* protected */}
+      <Route element={<ProtectedRoute />}>
+        {/* layout */}
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/topup" element={<TopUp />} />
+          <Route path="/payment/:serviceCode" element={<Payment />} />
+          <Route path="/transaction" element={<Transaction />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Route>
 
-      {/* catch all/redirect to home */}
+      {/* fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

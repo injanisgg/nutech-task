@@ -191,7 +191,7 @@ const Register = () => {
         </Box>
 
         <Box sx={{ flex: 1, textAlign: 'center' }}>
-          <img src="/login-illustration.png" alt="Register" style={{ maxWidth: '100%' }} />
+          <img src="/login-ilustration.png" alt="Register" style={{ maxWidth: '100%' }} />
         </Box>
       </Box>
     </Container>

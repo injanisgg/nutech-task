@@ -5,10 +5,10 @@ export const fetchProfile = createAsyncThunk(
     'profile/fetch',
     async(_, { rejectWithValue }) => {
         try {
-            const response = await getProfileAPI();
+            const response = await getProfileAPI(); 
             return response.data.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.response?.data || error.message);
         }
     }
 );
@@ -18,9 +18,9 @@ export const updateProfile = createAsyncThunk(
     async(profileData, { rejectWithValue }) => {
         try {
             const response = await updateProfileAPI(profileData);
-            return response.data;
+            return response.data.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.response?.data || error.message);
         }
     }
 );
@@ -30,9 +30,9 @@ export const updateProfileImage = createAsyncThunk(
     async(file, { rejectWithValue }) => {
         try {
             const response  = await updateProfileImageAPI(file);
-            return response.data;
+            return response.data.data;
         } catch (error) {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.response?.data || error.message);
         }
     }
 );
@@ -40,10 +40,15 @@ export const updateProfileImage = createAsyncThunk(
 const profileSlice = createSlice({
     name: 'profile',
     initialState: {
-        data: null,
-        loading: false,
-        error: null,
-        updateSuccess: false,
+    data: {
+        first_name: '',
+        last_name: '',
+        email: '',
+        profile_image: '',
+    },
+    loading: false,
+    error: null,
+    updateSuccess: false,
     },
     reducers: {
         clearUpdateSuccess: (state) => {
@@ -58,7 +63,9 @@ const profileSlice = createSlice({
         })
         .addCase(fetchProfile.fulfilled, (state, action) => {
             state.loading = false;
-            state.data = action.payload;
+            if (action.payload !== '__NO_CONTENT__') {
+                state.data = action.payload;
+            }
         })
         .addCase(fetchProfile.rejected, (state, action) => {
             state.loading = false;

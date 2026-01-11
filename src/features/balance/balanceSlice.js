@@ -19,7 +19,7 @@ export const topUp = createAsyncThunk(
         try {
             const response = await topUpAPI(amount);
             dispatch(fetchBalance());
-            return response.data;
+            return response.data.data.balance;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }

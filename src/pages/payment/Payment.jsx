@@ -7,7 +7,6 @@ import {
   Dialog, DialogTitle, DialogContent, DialogActions, InputAdornment
 } from '@mui/material';
 import { Payment as PaymentIcon, CheckCircle } from '@mui/icons-material';
-import Layout from '../../components/Layout/Layout';
 import { makeTransaction } from '../../features/transaction/transactionSlice';
 import { fetchBalance } from '../../features/balance/balanceSlice';
 
@@ -60,7 +59,7 @@ const Payment = () => {
   if (!service) return null;
 
   return (
-    <Layout>
+    <Container maxWidth="lg">
       <Container maxWidth="md">
         <Box sx={{ py: 4 }}>
           <Typography variant="h5" sx={{ mb: 1 }}>
@@ -161,7 +160,7 @@ const Payment = () => {
           </Button>
         </DialogContent>
       </Dialog>
-    </Layout>
+    </Container>
   );
 };
 

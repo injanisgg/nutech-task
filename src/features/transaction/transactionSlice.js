@@ -23,7 +23,7 @@ export const makeTransaction = createAsyncThunk(
         try {
             const response = await transactionAPI(serviceCode);
             dispacth(fetchTransactionHistory({ offset: 0, limit: 5 }));
-            return response.data;
+            return response.data.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
         }

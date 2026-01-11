@@ -7,7 +7,6 @@ import {
   InputAdornment
 } from '@mui/material';
 import { AccountBalanceWallet } from '@mui/icons-material';
-import Layout from '../../components/Layout/Layout';
 import { topUp, clearTopUpSuccess } from '../../features/balance/balanceSlice';
 
 const TopUp = () => {
@@ -60,74 +59,72 @@ const TopUp = () => {
   };
 
   return (
-    <Layout>
-      <Container maxWidth="md">
-        <Box sx={{ py: 4 }}>
-          <Typography variant="h5" sx={{ mb: 1 }}>
-            Silakan masukkan
-          </Typography>
-          <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 4 }}>
-            Nominal Top Up
-          </Typography>
+    <Container maxWidth="md">
+      <Box sx={{ py: 4 }}>
+        <Typography variant="h5" sx={{ mb: 1 }}>
+          Silakan masukkan
+        </Typography>
+        <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 4 }}>
+          Nominal Top Up
+        </Typography>
 
-          {/* balance display */}
-          <Card sx={{ mb: 4, bgcolor: '#f5f5f5' }}>
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                Saldo Saat Ini
-              </Typography>
-              <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
-                Rp {formatCurrency(balance)}
-              </Typography>
-            </CardContent>
-          </Card>
+        {/* balance display */}
+        <Card sx={{ mb: 4, bgcolor: '#f5f5f5' }}>
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              Saldo Saat Ini
+            </Typography>
+            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+              Rp {formatCurrency(balance)}
+            </Typography>
+          </CardContent>
+        </Card>
 
-          <Box component="form" onSubmit={handleSubmit}>
-            <TextField
-              fullWidth
-              type="number"
-              placeholder="masukan nominal Top Up"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              sx={{ mb: 3 }}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountBalanceWallet />
-                  </InputAdornment>
-                ),
-              }}
-            />
+        <Box component="form" onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            type="number"
+            placeholder="masukan nominal Top Up"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            sx={{ mb: 3 }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AccountBalanceWallet />
+                </InputAdornment>
+              ),
+            }}
+          />
 
-            {/* quick amount buttons */}
-            <Grid container spacing={2} sx={{ mb: 3 }}>
-              {quickAmounts.map((quickAmount) => (
-                <Grid item xs={4} key={quickAmount}>
-                  <Button
-                    fullWidth
-                    variant="outlined"
-                    onClick={() => setAmount(quickAmount.toString())}
-                    sx={{ py: 1.5 }}
-                  >
-                    Rp {formatCurrency(quickAmount)}
-                  </Button>
-                </Grid>
-              ))}
-            </Grid>
+          {/* quick amount buttons */}
+          <Grid container spacing={2} sx={{ mb: 3 }}>
+            {quickAmounts.map((quickAmount) => (
+              <Grid item xs={4} key={quickAmount}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => setAmount(quickAmount.toString())}
+                  sx={{ py: 1.5 }}
+                >
+                  Rp {formatCurrency(quickAmount)}
+                </Button>
+              </Grid>
+            ))}
+          </Grid>
 
-            <Button
-              fullWidth
-              variant="contained"
-              type="submit"
-              disabled={!isValidAmount() || loading}
-              sx={{ py: 1.5 }}
-            >
-              {loading ? 'Processing...' : 'Top Up'}
-            </Button>
-          </Box>
+          <Button
+            fullWidth
+            variant="contained"
+            type="submit"
+            disabled={!isValidAmount() || loading}
+            sx={{ py: 1.5 }}
+          >
+            {loading ? 'Processing...' : 'Top Up'}
+          </Button>
         </Box>
-      </Container>
-    </Layout>
+      </Box>
+    </Container>
   );
 };
 
